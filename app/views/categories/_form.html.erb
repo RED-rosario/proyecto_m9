@@ -1,0 +1,28 @@
+
+<%= form_with model: @category do |form| %>
+    <div>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+
+         <% if @book %>
+             <% @book.errors.full_messages_for(:name).each do |message| %>
+             <div><%= message %></div>
+             <% end %>
+         <% end %>    
+    </div>
+  
+    <div>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %>
+      <% if @book %>
+      <% @book.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+      <% end %>
+    <% end %>   
+      </div>
+    
+    <div>
+      <%= form.submit %>
+    </div>
+
+  <% end %>

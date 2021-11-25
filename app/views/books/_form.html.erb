@@ -1,0 +1,47 @@
+
+<%= form_with model: @book do |form| %>
+    <div>
+      <%= form.label :Titulo %>
+      <%= form.text_field :title %>
+        
+         <% if @book %>
+             <% @book.errors.full_messages_for(:title).each do |message| %>
+             <div><%= message %></div>
+             <% end %>
+         <% end %>    
+    </div>
+  
+    <div>
+      <%= form.label :description %><br>
+      <%= form.text_area :description, :cols => 25, rows: 8 %>
+      <% if @book %>
+      <% @book.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+      <% end %>
+    <% end %>   
+    </div>
+     <div>
+       <h1>Categorías</h1> <h2>Debe seleccionar categorías</h2>
+        <% @categories.each do |category| %>
+           <div>
+             <%= check_box_tag "categories[]", category.id %>
+                <%= category.name %>
+            </div>
+          <% end %> 
+      </div>
+      <h1></h1>
+      <%= link_to "Ir a Categorias", categories_path %>
+      <h1></h1>
+      <h1>Autores a Seleccionar</h1> 
+      <div>
+      <%= form.collection_select(:author_id, Author.all, :id, :name ) %>
+     </div>
+     <div>
+     <h1>Ingresar un Autor</h1>
+     <%= link_to "Ir Autor", authors_path %>
+     </div> 
+     <h1> </h1>
+     <div>
+      <%= form.submit 'Crear Book', class: 'button is-primary, is-fullwidht' %>
+     </div>
+  <% end %>

@@ -1,0 +1,18 @@
+
+<h2>Detalle del Libro</h2>
+<div>
+    <p><strong>Titulo:</strong></p>
+    <p><%= @book.title%></p>
+    
+    <p><strong>Categorias:</strong></p>
+     <% @categories.each do |category| %>
+        <li>
+        <%= category.name %>
+        </li>
+      <% end %>
+     
+      <p><strong>Descripción:</strong></p>
+      <p><%= @book.description%></p>
+      <h1></h1>
+      <%= link_to 'Volver', books_path %>
+</div>   
